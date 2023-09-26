@@ -1,0 +1,106 @@
+<DOCTYPE html>
+<html>
+<head>
+    <title>Random Dice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-top: 50px;
+        }
+        
+        #dice {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .die {
+			width: 110px;
+			height: 110px;
+			background-color: #f1f1f1;
+			border: 1px solid #ccc;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0 10px;
+			border-radius: 20px;
+		}
+        
+        #rollButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trò Chơi Xúc Xắc</h1>
+		<a>Người chơi 1</a>&emsp;
+		<a>Người chơi 2</a>
+    <div id="dice">
+        <div class="die" id="die1"></div>
+        <div class="die" id="die2"></div>
+    </div>
+
+    <button id="rollButton">Đổ xúc xắc</button>
+
+    <div id="result"></div>
+    <script>
+        window.onload = function() {
+            var die1 = document.getElementById("die1");
+            var die2 = document.getElementById("die2");
+            var rollButton = document.getElementById("rollButton");
+            var result = document.getElementById("result");
+
+            function rollDice() {
+                var diceImages = [
+                    "dice1.png",
+                    "dice2.png",
+                    "dice3.png",
+                    "dice4.png",
+                    "dice5.png",
+                    "dice6.png"
+                ];
+
+                var randomIndex1 = Math.floor(Math.random() * diceImages.length);
+                var randomIndex2 = Math.floor(Math.random() * diceImages.length);
+
+                die1.style.backgroundImage = "url('" + diceImages[randomIndex1] + "')";
+                die2.style.backgroundImage = "url('" + diceImages[randomIndex2] + "')";
+
+                var player1Value = randomIndex1 + 1;
+                var player2Value = randomIndex2 + 1;
+
+                if (player1Value > player2Value) {
+                    result.innerText = "Người chơi 1 thắng!";
+                } else if (player1Value < player2Value) {
+                    result.innerText = "Người chơi 2 thắng!";
+                } else {
+                    result.innerText = "Hoà!";
+                }
+            }
+
+            rollButton.onclick = function() {
+                rollDice();
+            }
+
+            rollDice();
+        };
+    </script>
+</body>
+</html>
